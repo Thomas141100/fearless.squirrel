@@ -37,6 +37,7 @@ function collisions()
     bullet_collision();
     player_collision();
     player_falling();
+    ennemy_collision();
 }
 
 function bullet_collision()
@@ -61,6 +62,8 @@ function player_collision()
     var x = player1.graphic.position.x + WIDTH / 2;
     var y = player1.graphic.position.y + HEIGHT / 2;
 
+    if ( x < 0 )
+        player1.graphic.position.x -= x;
     if ( x > WIDTH )
         player1.graphic.position.x -= x - WIDTH;
     if ( y < 0 )
@@ -70,13 +73,31 @@ function player_collision()
 
 }
 
+function ennemy_collision()
+{
+    //collision between player and ennemy
+    var x = player1.graphic.position.x + WIDTH / 2;
+    var y = player1.graphic.position.y + HEIGHT / 2;
+    var ennemy_x = ennemy1.graphic.position.x + WIDTH / 2;
+    var ennemy_y = ennemy1.graphic.position.y + HEIGHT / 2;
+
+    if ( (x > ennemy_x - 10)
+        && (x < ennemy_x + 10)
+        && (y > ennemy_y - 10) 
+        && (y < ennemy_y + 10))
+    {
+        console.log("HIT ENNEMY")
+        player1.dead();
+    }
+}
+
 function player_falling()
 {
     var nb_tile = 10;
     var sizeOfTileX = WIDTH / nb_tile;
     var sizeOfTileY = HEIGHT / nb_tile;
-    var x = player1.graphic.position.x | 0;
-    var y = player1.graphic.position.y | 0;
+    var x = player1.position.x | 0;
+    var y = player1.position.y | 0;
     var length = noGround.length;
     var element = null;
 
@@ -93,7 +114,7 @@ function player_falling()
             && (y > tileY) 
             && (y < mtileY))
         {
-           player1.dead();
+            // player1.dead();
         }
     }
 

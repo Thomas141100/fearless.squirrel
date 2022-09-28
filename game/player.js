@@ -1,4 +1,4 @@
-var Player = function(name, color, position, direction) {
+let Player = function(name, color, position, direction) {
 
     this.name = name;
     this.position = position;
@@ -11,7 +11,7 @@ var Player = function(name, color, position, direction) {
         color: color,
         });
 
-    var singleGeometry = new THREE.Geometry();
+    let singleGeometry = new THREE.Geometry();
 
     vehiculeMesh = new THREE.ConeGeometry(5, 20, 32);
     this.graphic = new THREE.Mesh(vehiculeMesh, this.material);
@@ -38,7 +38,7 @@ Player.prototype.dead = function () {
 }
 
 Player.prototype.accelerate = function (distance) {
-    var max = 2;
+    let max = 2;
 
     this.speed += distance / 4;
     if (this.speed >= max) {
@@ -47,7 +47,7 @@ Player.prototype.accelerate = function (distance) {
 };
 
 Player.prototype.decelerate = function (distance) {
-    var min = -1;
+    let min = -1;
 
     this.speed -= distance / 16;
     if (this.speed <= min) {
@@ -70,7 +70,7 @@ Player.prototype.turnLeft = function (angle) {
 };
 
 Player.prototype.move = function () {
-    var moveTo = new THREE.Vector3(
+    let moveTo = new THREE.Vector3(
         this.speed * Math.cos(this.direction) + this.position.x,
         this.speed * Math.sin(this.direction) + this.position.y,
         this.graphic.position.z

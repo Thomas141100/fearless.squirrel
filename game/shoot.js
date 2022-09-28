@@ -1,6 +1,6 @@
-var bulletTime1 = 0;
+let bulletTime1 = 0;
 
-var bullet_player1_material = new THREE.MeshLambertMaterial(
+let bullet_player1_material = new THREE.MeshLambertMaterial(
 {
     color: 0x00ff00, 
     transparent: false
@@ -22,9 +22,9 @@ function shoot()
     } 
 
     // move bullets
-    var moveDistance = 5;
+    let moveDistance = 5;
 
-    for (var i = 0; i < player1.bullets.length; i++)
+    for (let i = 0; i < player1.bullets.length; i++)
     {
         player1.bullets[i].position.x += moveDistance * Math.cos(player1.bullets[i].angle);
         player1.bullets[i].position.y += moveDistance * Math.sin(player1.bullets[i].angle);
@@ -43,7 +43,7 @@ function collisions()
 function bullet_collision()
 {
     //collision between bullet and walls
-    for (var i = 0; i < player1.bullets.length; i++)
+    for (let i = 0; i < player1.bullets.length; i++)
     {
         if (Math.abs(player1.bullets[i].position.x) >= WIDTH / 2 ||
             Math.abs(player1.bullets[i].position.y) >= HEIGHT / 2)
@@ -59,8 +59,8 @@ function bullet_collision()
 function player_collision()
 {
     //collision between player and walls
-    var x = player1.graphic.position.x + WIDTH / 2;
-    var y = player1.graphic.position.y + HEIGHT / 2;
+    let x = player1.graphic.position.x + WIDTH / 2;
+    let y = player1.graphic.position.y + HEIGHT / 2;
 
     if ( x < 0 )
         player1.graphic.position.x -= x;
@@ -76,10 +76,10 @@ function player_collision()
 function ennemy_collision()
 {
     //collision between player and ennemy
-    var x = player1.graphic.position.x + WIDTH / 2;
-    var y = player1.graphic.position.y + HEIGHT / 2;
-    var ennemy_x = ennemy1.graphic.position.x + WIDTH / 2;
-    var ennemy_y = ennemy1.graphic.position.y + HEIGHT / 2;
+    let x = player1.graphic.position.x + WIDTH / 2;
+    let y = player1.graphic.position.y + HEIGHT / 2;
+    let ennemy_x = ennemy1.graphic.position.x + WIDTH / 2;
+    let ennemy_y = ennemy1.graphic.position.y + HEIGHT / 2;
 
     if ( (x > ennemy_x - 10)
         && (x < ennemy_x + 10)
@@ -93,28 +93,28 @@ function ennemy_collision()
 
 function player_falling()
 {
-    var nb_tile = 10;
-    var sizeOfTileX = WIDTH / nb_tile;
-    var sizeOfTileY = HEIGHT / nb_tile;
-    var x = player1.position.x | 0;
-    var y = player1.position.y | 0;
-    var length = noGround.length;
-    var element = null;
+    let nb_tile = 10;
+    let sizeOfTileX = WIDTH / nb_tile;
+    let sizeOfTileY = HEIGHT / nb_tile;
+    let x = player1.position.x | 0;
+    let y = player1.position.y | 0;
+    let element = null;
 
-    for (var i = 0; i < length; i++) {
+    for (let i = 0; i < noGround.length; i++) {
         element = noGround[i];
 
-        var tileX = (element[0]) | 0;
-        var tileY = (element[1]) | 0;
-        var mtileX = (element[0] + sizeOfTileX) | 0;
-        var mtileY = (element[1] + sizeOfTileY) | 0;
+
+        let tileX = (element[0]) | 0;
+        let tileY = (element[1]) | 0;
+        let mtileX = (element[0] + sizeOfTileX) | 0;
+        let mtileY = (element[1] + sizeOfTileY) | 0;
 
         if ((x > tileX)
             && (x < mtileX)
             && (y > tileY) 
             && (y < mtileY))
         {
-            // player1.dead();
+            player1.dead();
         }
     }
 

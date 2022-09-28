@@ -1,4 +1,4 @@
-var Ennemy = function(name, color, position, direction) {
+let Ennemy = function(name, color, position, direction) {
 
     this.name = name;
     this.position = position;
@@ -10,7 +10,7 @@ var Ennemy = function(name, color, position, direction) {
         color: color,
         });
 
-    var singleGeometry = new THREE.Geometry();
+    let singleGeometry = new THREE.Geometry();
 
     vehiculeMesh = new THREE.ConeGeometry(5, 20, 32);
     this.graphic = new THREE.Mesh(vehiculeMesh, this.material);
@@ -24,7 +24,7 @@ Ennemy.prototype.dead = function () {
 }
 
 Ennemy.prototype.move = function () {
-    var moveTo = new THREE.Vector3(
+    let moveTo = new THREE.Vector3(
         this.speed * Math.cos(this.direction) + this.position.x,
         this.speed * Math.sin(this.direction) + this.position.y,
         this.graphic.position.z
